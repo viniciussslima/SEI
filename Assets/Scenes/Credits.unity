@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 436986196}
-  - component: {fileID: 436986195}
+  - component: {fileID: 436986197}
   m_Layer: 0
   m_Name: CreditsController
   m_TagString: Untagged
@@ -247,18 +247,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &436986195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436986194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af03aff05b2a48f46ac24346073f32cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &436986196
 Transform:
   m_ObjectHideFlags: 0
@@ -274,6 +262,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &436986197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436986194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc69978da40fb24587d7d4b37c48c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &635188984
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Dejair-s-Torment\r"
+  m_text: "Dejair's Torment\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8f0ca19e8f1174183af6eaedcadd28, type: 2}
   m_sharedMaterial: {fileID: 5415555850830735665, guid: eb8f0ca19e8f1174183af6eaedcadd28, type: 2}
@@ -835,8 +835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca853bb0bb884b4e88cf73991ee02cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNavmeshData: {fileID: 0}
-  gameObjectLibrary: []
 --- !u!4 &1144174708
 Transform:
   m_ObjectHideFlags: 0
@@ -1409,8 +1407,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 436986195}
-        m_TargetAssemblyTypeName: CreditsScripts, Assembly-CSharp
+      - m_Target: {fileID: 436986197}
+        m_TargetAssemblyTypeName: CreditsController, Assembly-CSharp
         m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
