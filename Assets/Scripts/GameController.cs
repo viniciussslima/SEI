@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class GameController : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class GameController : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject eventSystem;
     public GameObject camera;
+
+    void Start()
+    {
+    }
 
     void Update()
     {
@@ -25,6 +30,7 @@ public class GameController : MonoBehaviour
 
     public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPuseed = false;
@@ -32,8 +38,8 @@ public class GameController : MonoBehaviour
 
     public void Pause()
     {
+        Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
-        camera.SetActive(false);
         Time.timeScale = 0f;
         isPuseed = true;
     }
@@ -42,7 +48,7 @@ public class GameController : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu");
     }
 
 }
