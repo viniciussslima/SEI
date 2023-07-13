@@ -11,6 +11,12 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
+		
+		///////////
+		 	public AudioSource audios;
+    		public AudioClip Pular;
+		///////////
+
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
@@ -97,6 +103,9 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			////////////////////
+			audios=GetComponent<AudioSource>();
+			////////////////////
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
@@ -216,6 +225,7 @@ namespace StarterAssets
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+					audios.PlayOneShot(Pular, 1);
 				}
 
 				// jump timeout
