@@ -6,8 +6,8 @@ public class GameController2 : MonoBehaviour
 {
     public static bool isPuseed = false;
     public GameObject pauseMenuUI;
+    public GameObject aimUI;
     public GameObject eventSystem;
-    public GameObject camera;
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class GameController2 : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
+        aimUI.SetActive(true);
         Time.timeScale = 1f;
         isPuseed = false;
     }
@@ -40,6 +41,7 @@ public class GameController2 : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
+        aimUI.SetActive(false);
         Time.timeScale = 0f;
         isPuseed = true;
     }
