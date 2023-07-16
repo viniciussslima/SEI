@@ -31,7 +31,6 @@ public class gunScript : MonoBehaviour
         if(!shoot && Input.GetButton("Fire1"))
         {
             OnGunShoot.Invoke();
-            Debug.Log("Atirei");
             shoot = true;
             delayed = getTriggerTime;
             audios.PlayOneShot(shoots, 1);

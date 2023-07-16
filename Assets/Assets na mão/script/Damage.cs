@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class dano : MonoBehaviour
 {
     public float Damage;
     public float BulletRange;
+    public TextMeshProUGUI lifeText;
     private Transform PlayerCamera;
+    private float timeWhenDisappear;
+    private float timeToAppear = 0.5f;
+
 
     void Start()
     {
@@ -16,19 +21,23 @@ public class dano : MonoBehaviour
     // Update is called once per frame
     public void Shoot()
     {
-        Debug.Log("Shoot");
-
         Ray gunRay = new Ray(PlayerCamera.position, PlayerCamera.forward);
         if(Physics.Raycast(gunRay, out RaycastHit hitInfo, BulletRange))
         {
-            Debug.Log("gunRay");
-
             if (hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
             {
-                Debug.Log("collider");
-
                 enemy.Health -= Damage;
+                lifeText.text = enemy.Health.ToString();
+                timeWhenDisappear = Time.time + timeToAppear;
             }
+        }
+    }
+
+    void Update()
+    {
+        if (Time.time >= timeWhenDisappear)
+        {
+            lifeText.text = "";
         }
     }
 }

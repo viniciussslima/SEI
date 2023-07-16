@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -15,9 +16,10 @@ public class Entity : MonoBehaviour
         set
         {
             health = value;
-            Debug.Log(health);
 
-            if(health <= 0f)
+
+
+            if (health <= 0f)
             {
                 Destroy(gameObject);
             }
