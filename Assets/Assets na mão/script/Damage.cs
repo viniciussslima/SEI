@@ -16,11 +16,17 @@ public class dano : MonoBehaviour
     // Update is called once per frame
     public void Shoot()
     {
+        Debug.Log("Shoot");
+
         Ray gunRay = new Ray(PlayerCamera.position, PlayerCamera.forward);
         if(Physics.Raycast(gunRay, out RaycastHit hitInfo, BulletRange))
         {
-            if(hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
+            Debug.Log("gunRay");
+
+            if (hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
             {
+                Debug.Log("collider");
+
                 enemy.Health -= Damage;
             }
         }
