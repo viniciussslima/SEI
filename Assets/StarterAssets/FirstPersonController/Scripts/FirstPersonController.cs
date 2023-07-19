@@ -11,10 +11,10 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
-		
+
 		///////////
-		 	public AudioSource audios;
-    		public AudioClip Pular;
+		public AudioSource audios;
+		public AudioClip Pular;
 		///////////
 
 		[Header("Player")]
@@ -70,7 +70,8 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
-	
+		private bool jumped = false;
+
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
 #endif
@@ -84,11 +85,11 @@ namespace StarterAssets
 		{
 			get
 			{
-				#if ENABLE_INPUT_SYSTEM
+#if ENABLE_INPUT_SYSTEM
 				return _playerInput.currentControlScheme == "KeyboardMouse";
-				#else
+#else
 				return false;
-				#endif
+#endif
 			}
 		}
 
@@ -104,7 +105,7 @@ namespace StarterAssets
 		private void Start()
 		{
 			////////////////////
-			audios=GetComponent<AudioSource>();
+			audios = GetComponent<AudioSource>();
 			////////////////////
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
@@ -145,7 +146,7 @@ namespace StarterAssets
 			{
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				
+
 				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
 				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
 
@@ -211,6 +212,8 @@ namespace StarterAssets
 		{
 			if (Grounded)
 			{
+				jumped = true;
+
 				// reset the fall timeout timer
 				_fallTimeoutDelta = FallTimeout;
 
@@ -225,7 +228,7 @@ namespace StarterAssets
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-					audios.PlayOneShot(Pular, 1);
+					//audios.PlayOneShot(Pular, 1);
 				}
 
 				// jump timeout
@@ -239,10 +242,17 @@ namespace StarterAssets
 				// reset the jump timeout timer
 				_jumpTimeoutDelta = JumpTimeout;
 
+				if (jumped)
+				{
+					audios.PlayOneShot(Pular, 1);
+					jumped = false;
+				}
+
 				// fall timeout
 				if (_fallTimeoutDelta >= 0.0f)
 				{
 					_fallTimeoutDelta -= Time.deltaTime;
+					//audios.PlayOneShot(Pular, 1);
 				}
 
 				// if we are not grounded, do not jump
